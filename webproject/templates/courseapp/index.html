@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Info</title>
+    <link rel="stylesheet" href="{% static 'studentapp/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-primary text-center mt-3">Course Information</h1>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Course Credit</th>
+                    <th>Attendence</th>
+                    <th>CT Full Marks</th>
+                    <th>MID Full Marks</th>
+                    <th>Final Full Marks</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <!-- python for loop started -->
+                {% for x in courses %} 
+                <tr>
+                    <td>{{ x.crs_id }}</td>
+                    <td>{{ x.crs_name }}</td>
+                    <td>{{ x.crs_credit }}</td>
+                    <td>{{ x.crs_ct_marks }}</td>
+                    <td>{{ x.crs_at_marks }}</td>
+                    <td>{{ x.crs_mid_marks }}</td>
+                    <td>{{ x.crs_final_marks }}</td>
+                    <td>
+                        <a href="{% url 'editC' x.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'dltC' x.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            <!-- python for loop ended        -->
+            </tbody>
+        </table>
+
+        <hr>
+        <a href="{% url 'addnewC' %}" class="btn btn-success">Add New Course</a>
+    </div>
+    
+
+
+    <script src="{% static 'studentapp/js/main.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+</body>
+</html>

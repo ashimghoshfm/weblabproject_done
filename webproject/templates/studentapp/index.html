@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Info</title>
+    <link rel="stylesheet" href="{% static 'studentapp/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-primary text-center mt-3">Student Information</h1>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>District</th>
+                    <th>DOB</th>
+                    <th>Program Name</th>
+                    <th>Enroll Date</th>
+                    <th>GPA</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <!-- python for loop started -->
+                {% for x in students %}
+                <tr>
+                    <td>{{ x.st_id }}</td>
+                    <td>{{ x.st_name }}</td>
+                    <td>{{ x.st_dist}}</td>
+                    <td>{{ x.st_dob }}</td>
+                    <td>{{ x.st_edate }}</td>
+                    <td>{{ x.st_program }}</td>
+                    <td>{{ x.st_gpa }}</td>
+                    <td>
+                        <a href="{% url 'editS' x.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'deleteS' x.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            <!-- python for loop ended        -->
+            </tbody>
+        </table>
+
+        <hr>
+        <a href="{% url 'addnewS' %}" class="btn btn-success">Add New Student</a></br></br></br>
+    </div>
+    
+
+
+    <script src="{% static 'studentapp/js/main.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+</body>
+</html>
